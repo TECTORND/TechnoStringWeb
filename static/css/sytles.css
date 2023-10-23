@@ -1,0 +1,262 @@
+/* Container styles */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    /* Light gray background color */
+    transition: padding-left 0.5s;
+    /* Transition for sidebar */
+}
+
+/* Sidebar styles */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #F1F1F1;
+    z-index: 1000;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.menu.active #sidebar {
+    left: 0;
+}
+
+/* Menu styles */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 47px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    z-index: 999;
+    /* Ensures the menu appears above other content */
+    color: #000000;
+    /* Text color for menu items */
+    transition: padding-left 0.5s;
+    /* Transition for sidebar */
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+/* Sidebar toggle styles */
+#menu-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+    border-radius: 10px;
+    outline: 3px solid #FFF;
+    outline-offset: -3px
+}
+
+/* Menu content styles */
+#menu-content {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    display: none;
+    align-items: left;
+    flex-direction: row;
+    background-color: #000000;
+    padding: 10px;
+}
+
+
+.menu.active #menu-content {
+    display: block;
+}
+
+/* Remove bullet points in the sidebar */
+.menu-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-content ul li {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: left;
+    margin-bottom: 10px;
+}
+
+.menu-content ul li a {
+    color: #000000;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* Dark mode toggle styles */
+.dark-mode .container {
+    background-color: #444;
+    /* Dark background color */
+    color: #fff;
+    /* Light text color */
+}
+
+.dark-mode #sidebar {
+    background-color: #222;
+    color: #fff;
+    /* Light text color */
+}
+
+.dark-mode .menu-content ul li a {
+    color: #fff
+}
+
+
+/* Contact Us link styles */
+.contact-us-link {
+    text-decoration: none;
+}
+
+.contact-us-link:hover {
+    text-decoration: underline;
+}
+
+/* Center the logo and text in the menu */
+.menu .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.menu .logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+    margin-left: 1px;
+    /* Adjust margin as needed */
+}
+
+/* Button styles */
+#generate-button {
+    background-color: #0056b3;
+    /* Darker blue button color */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#generate-button:hover {
+    background-color: #003c80;
+    /* Slightly darker blue on hover */
+}
+
+/* Dark mode toggle styles */
+.dark-mode-label {
+    margin-left: 15px;
+    margin-right: 18px;
+}
+
+/* Dark mode toggle styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+}
+
+/* Style the default checkbox (hidden) */
+.switch input[type="checkbox"] {
+    display: none;
+}
+
+/* Style the sliding part of the switch */
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 3px;
+    right: 0px;
+    bottom: 0;
+    background-color: #ccc;
+    /* Default background color */
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
+    /* Rounded sliders */
+}
+
+/* Style the sliding part when the switch is checked */
+.switch input[type="checkbox"]:checked+.slider {
+    background-color: #2196F3;
+    /* Blue background color when checked */
+}
+
+/* Style the slider's round knob */
+.switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 2.5px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+    /* Rounded sliders */
+}
+
+/* Style the round knob when the switch is checked */
+.switch input[type="checkbox"]:checked+.slider:before {
+    transform: translateX(16px);
+    /* Move the knob to the right when checked */
+}
+
+.bx {
+    font-size: 1.5rem;
+    margin-right: 20px;
+}

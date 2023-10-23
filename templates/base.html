@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techno Bots - Session Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="menu">
+                <div id="menu-toggle" class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div id="sidebar" class="menu-content">
+                    <ul>
+                        <li>
+                            <span class="dark-mode-label"></span>
+                            <label class="switch">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <span class="slider round"></span>
+                            </label>
+                        </li>
+                        <li><a class="contact-us-link" href="https://t.me/TechnoBot_Support" target="_blank"><i class="bx bxl-telegram"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Techno Bots Logo" height="40">
+                    <span>TECHNO BOTS</span>
+                </div>
+            </div>
+            <div id="flash-messages"></div>
+            <div class="content">
+                {% block content %}(% endblock %}
+            </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        const eventSource = new EventSource('/sse');
+
+    eventSource.onmessage = function(event) {
+        const message = event.data;
+        displayFlashMessage(message); // Implement this function to display the flash message
+    };
+
+        function displayFlashMessage(message) {
+            const flashMessages = document.getElementById('flash-messages');
+            const messageElement = document.createElement('div');
+            messageElement.className = 'flash-message'; // You can define a CSS class for styling
+        
+            messageElement.textContent = message;
+        
+            flashMessages.appendChild(messageElement);
+        
+            // Automatically remove the message after a few seconds (optional)
+            setTimeout(function() {
+                flashMessages.removeChild(messageElement);
+            }, 3000); // Adjust the time (in milliseconds) as needed
+        }
+
+    </script>
+</body>
+
+</html>

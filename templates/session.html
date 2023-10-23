@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="title">Generate {{ library }} Session</h1>
+<form method="POST" action="/generate_session">
+    <label for="api_id">API ID:</label>
+    <input type="text" id="api_id" class="req" name="api_id" placeholder="Enter your API ID" value="{{ api_id }}" required><br>
+    <label for="api_hash">API Hash:</label>
+    <input type="text" id="api_hash" class="req" name="api_hash" placeholder="Enter your API Hash" value="{{ api_hash }}" required><br>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" class="req" name="phone_number" placeholder="Enter your phone number" value="{{ phone_number }}" required><br>
+    <button id="send_code_button" type="submit">Send Code</button><br>
+    <div id="otp_div" style="display: none;">
+        <label for="otp">OTP:</label>
+        <input type="text" id="otp" name="otp" placeholder="Enter OTP"><br>
+        <button id="submit_button" type="submit">Submit</button>
+    </div>
+</form>
+
+<script>
+    const sndBTN = document.getElementById('send_code_button');
+    const otpDIV = document.getElementById('otp_div');
+    const otp = document.getElementById('otp');
+    const req = document.getElementsByClassName('req');
+    
+    const eventSource = new EventSource('/sse');
+    
+    eventSource.onmessage = function(event) {
+        const message = event.data;
+        displayFlashMessage(message); // Implement this function to display the flash message
+    };
+
+    sndBTN.addEventListener('click', function () {
+        sndBTN.disabled = true;
+        sndBTN.textContent = 'Sending OTP...'
+    })
+    
+    {% if sendOTP %}
+    sndBTN.style.display = 'none';
+    otpDIV.style.display = 'block';
+    req.setAtribute('readonly', true);
+    {% endif %}
+    
+    
+</script>
+{% endblock %}

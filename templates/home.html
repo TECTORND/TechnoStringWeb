@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="title">Coming Soon...</h1>
+<p class="subtitle">Stay tuned for exciting updates!</p>
+<form method="POST" action="/">
+    <label for="choice">Choose a library:</label>
+    <select id="choice" name="choice">
+        <option value="telethon">Telethon</option>
+        <option value="pyrogram">Pyrogram</option>
+    </select>
+    <button id="generate-button" type="submit">Generate Session</button>
+</form>
+{% endblock %}
